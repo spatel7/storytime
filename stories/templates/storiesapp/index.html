@@ -9,25 +9,17 @@
 		<script type="text/javascript" src="{% static "js/addstory.js" %}"></script>
 		</head>
 	<body>
-
-		<h1>Stories - A new way to tell your life story</h1>
-		<p>Your life isn't a straight timeline. It's organic. It's all over the place. Tell that story with Stories, with clips of pictures that say everything.</p>
-		<a href='/storiesapp/add_story/'>Create a story</a><br /><br />
-		{% if stories %}
-			{% for story in stories %}
-				<div class='story'>
-					<b>{{ story.title }}</b> by {{ story.author }}<br>
-					{% for photo in photos %}
-						{% if photo.story_id == story.id %}
-							{{ photo.caption }}<br>
-						{% endif %}
-					{% endfor %}
-				</div><br>
-			{% endfor %}
+		{% if user.is_authenticated %}
+			<script type='text/javascript'>
+				window.location.href = "/storiesapp/home/"
+			</script>
 		{% else %}
-			<font>There are no stories to share here today.</font>
+			<h1 style='margin-bottom: 0px;'><a href='/storiesapp/'><font color='black'>Stories</font></a> </h1>
+			<h3 style='margin-top: 1px;'>Narrate your life with mini photo stories.</h3>
+			<p>Your life isn't a straight timeline. It's organic. It's all over the place. Tell that story with Stories, with bites of pictures that say everything.</p>
+			<a href='/storiesapp/login/'>Login to Stories</a><br />
+			<a href='/storiesapp/register/'>Join Stories</a><br />
 		{% endif %}
-
 	</body>
 </html>
 

@@ -10,10 +10,10 @@
 		</head>
 	<body>
 
-		<h1>Stories - Add a story</h1>
+		<h1><a href='/storiesapp/'><font color='black'>Stories</font></a> - Add a story</h1>
 		<h2>Story</h2>
 
-		<form action="" method="POST">{% csrf_token %}
+		<form action="" method="POST" enctype='multipart/form-data'>{% csrf_token %}
 		    <div class="section">
 		        {{ story_form.as_p }}
 		    </div>
