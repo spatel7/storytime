@@ -1,4 +1,38 @@
-<!DOCTYPE html>
+{% load staticfiles %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+		<title>Stories - Tell your life with pictures</title>
+		<link href="{% static "css/main.css" %}" rel='stylesheet' type='text/css'>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+		<script type="text/javascript" src="{% static "js/addstory.js" %}"></script>
+		</head>
+	<body>
+
+		<h1>Stories - A new way to tell your life story</h1>
+		<p>Your life isn't a straight timeline. It's organic. It's all over the place. Tell that story with Stories, with clips of pictures that say everything.</p>
+		<a href='/storiesapp/add_story/'>Create a story</a><br /><br />
+		{% if stories %}
+			{% for story in stories %}
+				<div class='story'>
+					<b>{{ story.title }}</b> by {{ story.author }}<br>
+					{% for photo in photos %}
+						{% if photo.story_id == story.id %}
+							{{ photo.caption }}<br>
+						{% endif %}
+					{% endfor %}
+				</div><br>
+			{% endfor %}
+		{% else %}
+			<font>There are no stories to share here today.</font>
+		{% endif %}
+
+	</body>
+</html>
+
+
+<!--<!DOCTYPE html>
 <html>
 	<head>
 		<title>Stories - Tell your life with pictures</title>
@@ -6,8 +40,21 @@
 	<body>
 		<font size='6'>Stories - A new way to tell your life story</font><br>
 		<p>Your life isn't a straight timeline. It's organic. It's all over the place. <br>Tell that story with Stories, with clips of pictures that say everything.</p>
-		<a href='/storiesapp/'>Stories</a><br>
-		<a href='/storiesapp/login/'>Login</a><br>
-		<a href='/storiesapp/register/'>Register</a>
+		<a href='/storiesapp/add_story/'>Create a story</a><br>
+		<b>Stories created</b><br /><br />
+		{% if stories %}
+			{% for story in stories %}
+				<div id='story'>
+					<b>{{ story.title }}</b> by {{ story.author }}<br>
+					{% for photo in photos %}
+						{% if photo.story_id == story.id %}
+							{{ photo.caption }}<br>
+						{% endif %}
+					{% endfor %}
+				</div><br>
+			{% endfor %}
+		{% else %}
+			<font>There are no stories to share here today.</font>
+		{% endif %}
 	</body>
-</html>
+</html>-->

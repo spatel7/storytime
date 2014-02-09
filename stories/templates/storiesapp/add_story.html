@@ -1,0 +1,60 @@
+{% load staticfiles %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+		<title>Stories - Tell your life with pictures</title>
+		<link href="{% static "css/main.css" %}" rel='stylesheet' type='text/css'>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+		<script type="text/javascript" src="{% static "js/addstory.js" %}"></script>
+		</head>
+	<body>
+
+		<h1>Stories - Add a story</h1>
+		<h2>Story</h2>
+
+		<form action="" method="POST">{% csrf_token %}
+		    <div class="section">
+		        {{ story_form.as_p }}
+		    </div>
+
+		    <h2>Photos</h2>
+		    {{ photo_formset.management_form }}
+		    {% for form in photo_formset.forms %}
+		    <div class="item">
+		      {{ form.as_p }}
+		      <p style=""><a class="delete" href="#">Delete</a></p>
+		    </div>
+		    {% endfor %}
+
+		    <p><a id="add" href="#">Add another photo</a></p>
+
+		    <input type="submit" value=" Add story " />
+
+		</form>
+
+	</body>
+</html>
+
+<!--<!DOCTYPE html>
+<html>
+	<head>
+		<title>Stories - Tell your life with pictures</title>
+	</head>
+	<body>
+		<font size='6'>Stories - Add a story</font><br>
+		<p>Tell your story by adding pictures that tell the tale bit by bit.</p><br>
+		<form id='story_form' method='post' action='/storiesapp/add_story/'>
+			{% csrf_token %}
+			<div>
+			{{ story_form.as_p }} <br>
+
+			{{ photo_formset.management_form }}
+			{% for form in photo_formset.forms %}
+				{{ form.as_p }}
+			{% endfor %}
+
+			<input type="submit" name="submit" value="Add story">
+		</form>
+	</body>
+</html>-->
